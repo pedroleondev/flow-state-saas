@@ -97,10 +97,10 @@ const ActiveTask = () => {
         </button>
       </header>
 
-      <main className="flex-grow flex flex-col items-center justify-center px-4 max-w-4xl mx-auto w-full -mt-20">
-        <div className={`flex items-center gap-2 mb-8 ${task.isRunning ? 'animate-pulse' : ''} ${getColorClass()}`}>
+      <main className="flex-grow flex flex-col items-center justify-center px-6 py-12 max-w-4xl mx-auto w-full">
+        <div className={`flex items-center justify-center gap-2 mb-8 ${task.isRunning ? 'animate-pulse' : ''} ${getColorClass()}`}>
           {getTaskIcon()}
-          <span className="text-sm font-medium uppercase tracking-wide">{task.type}</span>
+          <span className="text-sm font-medium uppercase tracking-wide whitespace-nowrap">{task.type}</span>
         </div>
 
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-center mb-12 text-gray-900 dark:text-white">
