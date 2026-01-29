@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: flow-state-saas
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Estas variáveis são necessárias no build time do Vite
+        - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+        - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+        - VITE_GEMINI_API_KEY=${VITE_GEMINI_API_KEY}
+    restart: always
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+      - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+      - VITE_GEMINI_API_KEY=${VITE_GEMINI_API_KEY}
+    networks:
+      - flow_network
+
+networks:
+  flow_network:
+    driver: bridge
