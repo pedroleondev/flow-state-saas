@@ -5,10 +5,10 @@ Este plano detalha as tarefas necessárias para preparar o Flow State para produ
 ## Fase 1: Consolidação de Configurações
 Nesta fase, garantiremos que todas as configurações sensíveis estejam devidamente isoladas.
 
-- [ ] **Tarefa: Centralizar chaves de API e criar .env.example**
-    - [ ] Identificar todas as ocorrências de chaves hardcoded (Supabase, Gemini).
-    - [ ] Criar arquivo `.env.example` com placeholders.
-    - [ ] Atualizar `lib/supabase.ts` e qualquer outro serviço para usar `import.meta.env`.
+- [x] **Tarefa: Centralizar chaves de API e criar .env.example** [a592f3e]
+    - [x] Identificar todas as ocorrências de chaves hardcoded (Supabase, Gemini). [a592f3e]
+    - [x] Criar arquivo `.env.example` com placeholders. [a592f3e]
+    - [x] Atualizar `lib/supabase.ts` e qualquer outro serviço para usar `import.meta.env`. [a592f3e]
 - [ ] **Tarefa: Validar carregamento de variáveis de ambiente**
     - [ ] Escrever teste unitário simples para verificar se as constantes de configuração são carregadas corretamente.
     - [ ] Implementar log de erro claro caso variáveis críticas estejam ausentes.
