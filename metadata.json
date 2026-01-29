@@ -1,0 +1,5 @@
+{
+  "name": "Orquestra de Demanda_Supabase_Login",
+  "description": "A productivity application designed to organize tasks into specific categories (Think, Reply, Execute) and orchestrate them based on available time slots.",
+  "requestFramePermissions": []
+}
