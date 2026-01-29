@@ -21,20 +21,18 @@ Criação dos artefatos Docker para deployment.
     - [x] Configurar estágio de build com Node.js. [89c168c]
     - [x] Configurar estágio de produção com Nginx para servir os arquivos estáticos. [89c168c]
     - [x] Otimizar o tamanho da imagem final. [89c168c]
-- [x] **Tarefa: Criar docker-compose.yml** [89c168c]
-    - [x] Definir serviço `app`. [89c168c]
-    - [x] Mapear portas e volumes se necessário. [89c168c]
-    - [x] Configurar passagem de variáveis de ambiente. [89c168c]
+- [x] **Tarefa: Criar Script de Build e Push (deploy-image.ps1)** [New]
+    - [x] Automatizar injeção de variáveis do .env.local como build-args.
+    - [x] Automatizar push para Docker Hub (`pedroleonpython/flow-state`).
 - [x] **Tarefa: Testar build e execução Docker localmente** [89c168c]
-    - [x] Executar `docker compose up --build`. [89c168c]
-    - [x] Verificar se a aplicação está acessível e funcional no container. [89c168c]
-- [x] **Tarefa: Conductor - User Manual Verification 'Fase 2: Conteinerização' (Protocol in workflow.md)** [checkpoint: 89c168c]
+    - [x] Executar script de deploy localmente para validar.
 
 ## Fase 3: Preparação para Deploy VPS/Portainer
 Ajustes finais para o ambiente de destino.
 
-- [x] **Tarefa: Documentar processo de deploy no Portainer** [89c168c]
-    - [x] Criar guia rápido no `README.md` ou arquivo dedicado. [89c168c]
-- [x] **Tarefa: Verificar integridade final** [89c168c]
-    - [x] Rodar todos os testes do projeto dentro do ambiente conteinerizado (se aplicável). [89c168c]
+- [x] **Tarefa: Criar docker-compose.yml para Portainer** [New]
+    - [x] Remover build context.
+    - [x] Apontar para imagem `pedroleonpython/flow-state:latest`.
+    - [x] Configurar redes e labels do Traefik.
+- [x] **Tarefa: Documentar novo fluxo no README** [New]
 - [x] **Tarefa: Conductor - User Manual Verification 'Fase 3: Preparação para Deploy VPS/Portainer' (Protocol in workflow.md)** [checkpoint: 89c168c]

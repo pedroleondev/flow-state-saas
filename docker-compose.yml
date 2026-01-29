@@ -2,17 +2,11 @@ version: "3.7"
 
 services:
   flow-state-saas:
-    # Configuração de build para o Portainer gerar a imagem do Git
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
-        - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
-        - VITE_GEMINI_API_KEY=${VITE_GEMINI_API_KEY}
-    image: flow-state-saas:latest
+    image: pedroleonpython/flow-state:latest
     networks:
       - metagente-net
+    # Atenção: Como a imagem é buildada externamente, estas variáveis aqui servem apenas 
+    # como documentação ou para sobreposições em tempo de execução se suportado.
     environment:
       - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
       - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}

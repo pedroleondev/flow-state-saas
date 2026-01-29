@@ -1,71 +1,50 @@
 # Flow State - SaaS de Alta Produtividade
 
-Este projeto é um sistema de orquestração de demandas e gerenciamento de foco (Deep Work), projetado para indivíduos de alta performance. Ele utiliza a técnica de "Flow State" para maximizar a produtividade e eliminar a ilusão de ocupação.
+Este projeto é um sistema de orquestração de demandas e gerenciamento de foco (Deep Work), projetado para indivíduos de alta performance.
 
 🔗 **Domínio:** [demanda.metagente360.cloud](https://demanda.metagente360.cloud)
 
 ## 🚀 Tecnologias
 
-O projeto foi construído com uma stack moderna e performática:
+- **Frontend:** React 19 + Vite
+- **Backend (BaaS):** Supabase
+- **IA:** Google Gemini API
+- **Infra:** Docker Swarm & Traefik
 
-- **Frontend:** [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Linguagem:** [TypeScript](https://www.typescriptlang.org/)
-- **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
-- **Ícones:** [Lucide React](https://lucide.dev/)
-- **Backend (BaaS):** [Supabase](https://supabase.com/) (Auth, Database, Realtime)
-- **IA:** Google Gemini API (Orquestração de Demandas)
-- **Infraestrutura:** Docker Swarm & Traefik
+## 🛠️ Desenvolvimento Local
 
-## 🛠️ Configuração Local
+1. `git clone https://github.com/pedroleondev/flow-state-saas.git`
+2. `npm install`
+3. Copie `.env.example` para `.env.local` e configure suas chaves.
+4. `npm run dev`
 
-### Pré-requisitos
-- Node.js 20+
-- NPM ou Yarn
+## 🐳 Deployment (Docker Hub & Portainer)
 
-1. **Clone o repositório**
-   ```bash
-   git clone https://github.com/pedroleondev/flow-state-saas.git
-   cd flow-state-saas
-   ```
+Este projeto usa o fluxo de **Build Local -> Push Docker Hub -> Pull Portainer**. Isso é necessário para que as variáveis de ambiente (API Keys) sejam injetadas no build estático do Vite com segurança.
 
-2. **Instale as dependências**
-   ```bash
-   npm install
-   ```
+### 1. Build e Push da Imagem
 
-3. **Configure as Variáveis de Ambiente**
-   Crie um arquivo `.env.local` na raiz do projeto baseado no `.env.example`:
-   ```bash
-   cp .env.example .env.local
-   ```
-   Preencha as variáveis:
-   - `VITE_SUPABASE_URL`: Sua URL do projeto Supabase.
-   - `VITE_SUPABASE_ANON_KEY`: Sua chave pública (anon) do Supabase.
-   - `VITE_GEMINI_API_KEY`: Sua chave de API do Google Gemini.
+Certifique-se de ter o Docker instalado e estar logado (`docker login`).
 
-4. **Inicie o servidor de desenvolvimento**
-   ```bash
-   npm run dev
-   ```
+Execute o script de deploy na raiz do projeto:
 
-## 🐳 Docker Swarm & Portainer Stack
+**Windows (PowerShell):**
+```powershell
+./deploy-image.ps1
+```
 
-O arquivo `docker-compose.yml` está configurado para **Docker Swarm** com **Traefik** como proxy reverso, utilizando a rede externa `metagente-net`.
+Este script irá:
+1. Ler as variáveis do seu `.env.local`.
+2. Executar `docker build` passando essas variáveis como `build-args`.
+3. Executar `docker push` para `pedroleonpython/flow-state:latest`.
 
-### Como Deployar no Portainer
+### 2. Deploy no Portainer
 
-1. **Crie uma nova Stack** no Portainer.
-2. **Método de Build:** Selecione **Repository** (Git).
-3. **Repository URL:** `https://github.com/pedroleondev/flow-state-saas.git`
-4. **Branch:** `main`
-5. **Environment variables:** Adicione as seguintes variáveis (essenciais para o build do Vite):
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
-   - `VITE_GEMINI_API_KEY`
-6. **Deploy the stack.**
-
-O Portainer irá clonar o repositório, construir a imagem Docker usando os argumentos fornecidos e implantar o serviço na rede `metagente-net`, acessível via `demanda.metagente360.cloud`.
+1. Crie uma nova **Stack** no Portainer.
+2. Use a opção **Repository** apontando para este Git.
+3. Defina as variáveis de ambiente no Portainer (para documentação e compatibilidade futura).
+4. Faça o Deploy. O Portainer baixará a imagem `pedroleonpython/flow-state:latest` que você acabou de enviar.
 
 ## 📝 Licença
 
-Este projeto é proprietário e desenvolvido para uso exclusivo.
+Proprietário.
