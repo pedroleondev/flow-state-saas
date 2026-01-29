@@ -1,26 +1,36 @@
-version: '3.8'
+version: "3.7"
 
 services:
-  app:
-    container_name: flow-state-saas
+  flow-state-saas:
+    # Configuração de build para o Portainer gerar a imagem do Git
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        # Estas variáveis são necessárias no build time do Vite
         - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
         - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
         - VITE_GEMINI_API_KEY=${VITE_GEMINI_API_KEY}
-    restart: always
-    ports:
-      - "3000:80"
+    image: flow-state-saas:latest
+    networks:
+      - metagente-net
     environment:
       - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
       - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
       - VITE_GEMINI_API_KEY=${VITE_GEMINI_API_KEY}
-    networks:
-      - flow_network
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.flow-state-saas.rule=Host(`demanda.metagente360.cloud`)
+        - traefik.http.routers.flow-state-saas.entrypoints=websecure
+        - traefik.http.routers.flow-state-saas.tls.certresolver=letsencryptresolver
+        - traefik.http.services.flow-state-saas.loadbalancer.server.port=80
+        - traefik.http.services.flow-state-saas.loadbalancer.passHostHeader=true
 
 networks:
-  flow_network:
-    driver: bridge
+  metagente-net:
+    external: true
