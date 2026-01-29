@@ -9,9 +9,9 @@ Nesta fase, garantiremos que todas as configurações sensíveis estejam devidam
     - [x] Identificar todas as ocorrências de chaves hardcoded (Supabase, Gemini). [a592f3e]
     - [x] Criar arquivo `.env.example` com placeholders. [a592f3e]
     - [x] Atualizar `lib/supabase.ts` e qualquer outro serviço para usar `import.meta.env`. [a592f3e]
-- [ ] **Tarefa: Validar carregamento de variáveis de ambiente**
-    - [ ] Escrever teste unitário simples para verificar se as constantes de configuração são carregadas corretamente.
-    - [ ] Implementar log de erro claro caso variáveis críticas estejam ausentes.
+- [x] **Tarefa: Validar carregamento de variáveis de ambiente** [7ad101c]
+    - [x] Escrever teste unitário simples para verificar se as constantes de configuração são carregadas corretamente. [7ad101c]
+    - [x] Implementar log de erro claro caso variáveis críticas estejam ausentes. [7ad101c]
 - [ ] **Tarefa: Conductor - User Manual Verification 'Fase 1: Consolidação de Configurações' (Protocol in workflow.md)**
 
 ## Fase 2: Conteinerização
